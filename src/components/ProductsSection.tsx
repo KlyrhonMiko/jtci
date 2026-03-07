@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 
@@ -166,13 +167,22 @@ export default function ProductsSection() {
                         Looking for a custom solution?{" "}
                         <span className="font-semibold text-[#654128]">We specialise in bespoke projects.</span>
                     </p>
-                    <a
-                        href="#contact"
-                        className="group inline-flex items-center gap-2 bg-[#654128] px-8 py-4 text-xs font-bold uppercase tracking-[0.18em] text-white transition-all duration-300 hover:bg-[#9c6f4a] hover:gap-3 hover:shadow-xl hover:shadow-[#9c6f4a]/20"
-                    >
-                        Request a Quote
-                        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                    </a>
+                    <div className="flex items-center gap-4">
+                        <Link
+                            href="/products"
+                            className="group inline-flex items-center gap-2 border border-[#9c6f4a] px-8 py-4 text-xs font-bold uppercase tracking-[0.18em] text-[#654128] transition-all duration-300 hover:bg-[#654128] hover:text-white hover:gap-3 hover:shadow-xl hover:shadow-[#9c6f4a]/20"
+                        >
+                            View More
+                            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                        </Link>
+                        <a
+                            href="#contact"
+                            className="group inline-flex items-center gap-2 bg-[#654128] px-8 py-4 text-xs font-bold uppercase tracking-[0.18em] text-white transition-all duration-300 hover:bg-[#9c6f4a] hover:gap-3 hover:shadow-xl hover:shadow-[#9c6f4a]/20"
+                        >
+                            Request a Quote
+                            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                        </a>
+                    </div>
                 </div>
             </div>
 

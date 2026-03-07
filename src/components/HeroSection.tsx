@@ -14,7 +14,7 @@ export default function HeroSection() {
     return (
         <section
             id="home"
-            className="relative flex min-h-screen items-end overflow-hidden"
+            className="relative flex h-screen items-end overflow-hidden"
         >
             {/* Background Image */}
             <Image
@@ -35,7 +35,7 @@ export default function HeroSection() {
 
             {/* Main Content */}
             <div className="relative z-10 w-full pb-0">
-                <div className="mx-auto max-w-7xl px-8 lg:px-16 pb-24 pt-32">
+                <div className="mx-auto max-w-7xl px-8 lg:px-16 pb-6 pt-24">
 
                     {/* Pre-heading label */}
                     <div
@@ -70,7 +70,7 @@ export default function HeroSection() {
 
                     {/* Subheading */}
                     <p
-                        className="mb-10 max-w-xl text-base leading-relaxed text-white/65 sm:text-lg animate-fade-in-up"
+                        className="mb-8 max-w-xl text-base leading-relaxed text-white/65 sm:text-lg animate-fade-in-up"
                         style={{ animationDelay: "220ms", animationFillMode: "both" }}
                     >
                         JTCICARPET Gallery Corporation delivers premium broadloom carpets,
@@ -100,7 +100,7 @@ export default function HeroSection() {
 
                     {/* Stats Bar */}
                     <div
-                        className="mt-16 flex flex-wrap gap-x-0 gap-y-6 border-t border-white/10 pt-10 animate-fade-in-up"
+                        className="mt-10 flex flex-wrap gap-x-0 gap-y-4 border-t border-white/10 pt-6 animate-fade-in-up"
                         style={{ animationDelay: "500ms", animationFillMode: "both" }}
                     >
                         {stats.map((stat, i) => (
