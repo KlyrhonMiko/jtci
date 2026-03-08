@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@plugin "tailwindcss-animate";
+@plugin "../../node_modules/tailwindcss-animate";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -55,6 +55,20 @@
   --color-cream-dark: #3d2e28;
   --color-burgundy: #a69183;
   --color-warm-gray: #8a7565;
+  /* Section divider */
+  --color-section-divider: linear-gradient(90deg, #654128, #9c6f4a);
+
+  --animate-ken-burns: ken-burns 15s linear infinite;
+
+  @keyframes ken-burns {
+    0% {
+      transform: scale(1);
+    }
+
+    100% {
+      transform: scale(1.15);
+    }
+  }
 }
 
 :root {

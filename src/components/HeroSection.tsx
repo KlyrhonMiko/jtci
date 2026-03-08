@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { ArrowRight, ChevronDown } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const stats = [
     { value: "10+", label: "Years of Excellence" },
@@ -10,28 +11,62 @@ const stats = [
     { value: "100%", label: "Quality Assured" },
 ];
 
+const backgroundImages = [
+    "/images/hero.png",
+    "/images/gallery-conference.png",
+    "/images/gallery-hotel.png",
+    "/images/gallery-office.png",
+    "/images/gallery-residential.png",
+];
+
 export default function HeroSection() {
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [prevImageIndex, setPrevImageIndex] = useState(-1);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setPrevImageIndex(currentImageIndex);
+            setCurrentImageIndex((prev) => (prev + 1) % backgroundImages.length);
+        }, 5000); // Change image every 5 seconds
+
+        return () => clearInterval(interval);
+    }, [currentImageIndex]);
+
     return (
         <section
             id="home"
             className="relative flex h-screen items-end overflow-hidden"
         >
-            {/* Background Image */}
-            <Image
-                src="/images/hero.png"
-                alt="JTCICARPET Gallery Showroom"
-                fill
-                className="object-cover object-center"
-                priority
-                quality={90}
-            />
+            {/* Background Image Slideshow */}
+            {backgroundImages.map((src, index) => {
+                const isActive = index === currentImageIndex;
+                const isPrevious = index === prevImageIndex;
+
+                return (
+                    <div
+                        key={src}
+                        className={`absolute inset-0 transition-opacity duration-2000 ease-in-out ${isActive ? "opacity-100 z-[1]" : "opacity-0 z-0"
+                            }`}
+                    >
+                        <Image
+                            src={src}
+                            alt={`Interior Design ${index + 1}`}
+                            fill
+                            className={`object-cover object-center ${isActive || isPrevious ? "animate-ken-burns" : ""
+                                }`}
+                            priority={index === 0}
+                            quality={90}
+                        />
+                    </div>
+                );
+            })}
 
             {/* Layered overlay — heavier on the left for text legibility */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/10" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
+            <div className="absolute inset-0 z-[1] bg-gradient-to-r from-black/85 via-black/55 to-black/10" />
+            <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black/70 via-transparent to-black/20" />
 
             {/* Subtle brand-tinted accent glow */}
-            <div className="absolute bottom-0 left-0 h-[40%] w-[50%] bg-[#9c6f4a]/10 blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 left-0 z-[1] h-[40%] w-[50%] bg-[#9c6f4a]/10 blur-3xl pointer-events-none" />
 
             {/* Main Content */}
             <div className="relative z-10 w-full pb-0">
