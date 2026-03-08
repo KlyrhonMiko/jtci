@@ -7,19 +7,19 @@ const contactInfo = [
     {
         icon: MapPin,
         label: "Visit Us",
-        value: "Metro Manila, Philippines",
+        value: "#8 Dahlia St. De Castro, Sta Lucia, Pasig, Philippines, 1609",
         detail: "Available by appointment",
     },
     {
         icon: Phone,
         label: "Call Us",
-        value: "+63 (2) 8888-JTCI",
+        value: "0968 140 0113",
         detail: "Mon – Sat, 8AM – 6PM",
     },
     {
         icon: Mail,
         label: "Email Us",
-        value: "info@jtcicarpet.com",
+        value: "jovetcarpets_05@yahoo.com",
         detail: "We reply within 24 hours",
     },
     {
@@ -84,14 +84,47 @@ export default function ContactSection() {
         if (Object.keys(newErrors).length > 0) return;
 
         setSubmitting(true);
-        // Simulate API call
-        await new Promise((r) => setTimeout(r, 1500));
+
+        // Professional Email Formatting
+        const recipient = "jakultubulsalsalani@gmail.com";
+        const subject = encodeURIComponent(`${formData.inquiryType} from ${formData.fullName} - JTCICARPET Inquiry`);
+
+        const emailBody = encodeURIComponent(`NEW PROJECT INQUIRY - JTCICARPET GALLERY
+
+CLIENT OVERVIEW:
+- Name: ${formData.fullName}
+- Company: ${formData.company || "N/A"}
+- Email: ${formData.email}
+- Phone: ${formData.phone || "N/A"}
+
+PROJECT DETAILS:
+- Inquiry Type: ${formData.inquiryType}
+- Message:
+--------------------------------------------------
+${formData.message}
+--------------------------------------------------
+
+Sent via JTCICARPET Website Contact Form`);
+
+        const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${recipient}&su=${subject}&body=${emailBody}`;
+
+        // Simulate API delay for UX
+        await new Promise((r) => setTimeout(r, 1000));
+
+        // Open Gmail in new tab
+        window.open(gmailLink, "_blank", "noopener,noreferrer");
+
         setSubmitting(false);
         setSubmitted(true);
     };
 
     const handleChange = (field: string, value: string) => {
-        setFormData((prev) => ({ ...prev, [field]: value }));
+        let processedValue = value;
+        if (field === "phone") {
+            // Remove all characters that are not digits
+            processedValue = value.replace(/\D/g, "");
+        }
+        setFormData((prev) => ({ ...prev, [field]: processedValue }));
         if (errors[field]) setErrors((prev) => { const n = { ...prev }; delete n[field]; return n; });
     };
 
@@ -165,9 +198,20 @@ export default function ContactSection() {
                                             <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#9c6f4a] mb-1">
                                                 {info.label}
                                             </p>
-                                            <p className="text-[14px] font-semibold text-white mb-0.5">
-                                                {info.value}
-                                            </p>
+                                            {info.icon === Mail ? (
+                                                <a
+                                                    href="https://mail.google.com/mail/?view=cm&fs=1&to=jovetcarpets_05@yahoo.com&su=Inquiry%20from%20JTCICARPET%20Gallery&body=Hello%20JTCICARPET%20team,"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="text-[14px] font-semibold text-white mb-0.5 hover:text-[#dfccbd] transition-colors"
+                                                >
+                                                    {info.value}
+                                                </a>
+                                            ) : (
+                                                <p className="text-[14px] font-semibold text-white mb-0.5">
+                                                    {info.value}
+                                                </p>
+                                            )}
                                             <p className="text-[12px] text-white/40">{info.detail}</p>
                                         </div>
                                     </div>
@@ -177,7 +221,7 @@ export default function ContactSection() {
                             {/* Call CTA */}
                             <div className="mt-auto border-t border-white/10 pt-8">
                                 <a
-                                    href="tel:+6328888JTCI"
+                                    href="tel:+639681400113"
                                     className="group inline-flex items-center gap-3 text-sm font-bold uppercase tracking-[0.18em] text-[#dfccbd] transition-all duration-300 hover:text-white hover:gap-4"
                                 >
                                     <Phone className="h-5 w-5 text-[#9c6f4a]" />
