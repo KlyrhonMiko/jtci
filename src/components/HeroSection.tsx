@@ -35,7 +35,7 @@ export default function HeroSection() {
     return (
         <section
             id="home"
-            className="relative flex h-screen items-end overflow-hidden"
+            className="relative flex min-h-[100dvh] items-end overflow-hidden"
         >
             {/* Background Image Slideshow */}
             {backgroundImages.map((src, index) => {
@@ -69,8 +69,8 @@ export default function HeroSection() {
             <div className="absolute bottom-0 left-0 z-[1] h-[40%] w-[50%] bg-[#9c6f4a]/10 blur-3xl pointer-events-none" />
 
             {/* Main Content */}
-            <div className="relative z-10 w-full pb-0">
-                <div className="mx-auto max-w-7xl px-8 lg:px-16 pb-6 pt-24">
+            <div className="relative z-10 w-full pb-0 mt-24 lg:mt-0">
+                <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-16 pb-6 pt-24 lg:pt-32">
 
                     {/* Pre-heading label */}
                     <div
@@ -85,7 +85,7 @@ export default function HeroSection() {
 
                     {/* Main Heading */}
                     <h1
-                        className="mb-6 max-w-3xl font-[family-name:var(--font-playfair)] text-5xl font-bold leading-[1.1] tracking-tight text-white sm:text-6xl lg:text-7xl animate-fade-in-up"
+                        className="mb-4 sm:mb-6 max-w-3xl font-[family-name:var(--font-playfair)] text-4xl font-bold leading-[1.15] tracking-tight text-white sm:text-5xl lg:text-7xl animate-fade-in-up"
                         style={{ animationDelay: "100ms", animationFillMode: "both" }}
                     >
                         Elevating Spaces
@@ -105,7 +105,7 @@ export default function HeroSection() {
 
                     {/* Subheading */}
                     <p
-                        className="mb-8 max-w-xl text-base leading-relaxed text-white/65 sm:text-lg animate-fade-in-up"
+                        className="mb-6 sm:mb-8 max-w-xl text-sm leading-relaxed text-white/70 sm:text-lg animate-fade-in-up"
                         style={{ animationDelay: "220ms", animationFillMode: "both" }}
                     >
                         JTCICARPET Gallery Corporation delivers premium broadloom carpets,
@@ -115,7 +115,7 @@ export default function HeroSection() {
 
                     {/* CTA Buttons */}
                     <div
-                        className="flex flex-wrap items-center gap-4 animate-fade-in-up"
+                        className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-3 sm:gap-4 animate-fade-in-up"
                         style={{ animationDelay: "340ms", animationFillMode: "both" }}
                     >
                         <a
@@ -135,22 +135,24 @@ export default function HeroSection() {
 
                     {/* Stats Bar */}
                     <div
-                        className="mt-10 flex flex-wrap gap-x-0 gap-y-4 border-t border-white/10 pt-6 animate-fade-in-up"
+                        className="mt-8 lg:mt-10 grid grid-cols-2 md:grid-cols-4 gap-y-6 gap-x-4 sm:gap-x-0 border-t border-white/10 pt-6 animate-fade-in-up"
                         style={{ animationDelay: "500ms", animationFillMode: "both" }}
                     >
                         {stats.map((stat, i) => (
                             <div
                                 key={stat.label}
-                                className="flex items-stretch pr-10 mr-10 last:pr-0 last:mr-0"
+                                className="flex flex-col items-start pr-2 sm:pr-8 lg:pr-10 sm:mr-8 lg:mr-10 md:last:pr-0 md:last:mr-0 last:pr-0 last:mr-0"
                                 style={{
-                                    borderRight: i < stats.length - 1 ? "1px solid rgba(255,255,255,0.12)" : "none",
+                                    borderRight: i !== 1 && i !== stats.length - 1 
+                                        ? "1px solid rgba(255,255,255,0.12)" 
+                                        : undefined,
                                 }}
                             >
                                 <div>
-                                    <p className="text-3xl font-bold text-white font-[family-name:var(--font-playfair)] leading-none">
+                                    <p className="text-2xl sm:text-3xl font-bold text-white font-[family-name:var(--font-playfair)] leading-none">
                                         {stat.value}
                                     </p>
-                                    <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#a69183]">
+                                    <p className="mt-1 sm:mt-2 text-[9px] sm:text-[10px] font-semibold uppercase tracking-[0.15em] sm:tracking-[0.2em] text-[#a69183]">
                                         {stat.label}
                                     </p>
                                 </div>
