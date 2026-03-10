@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ArrowLeft, Home } from "lucide-react";
+import TileCollectionsViewer from "@/components/TileCollectionsViewer";
 
 const allProducts = [
     {
@@ -303,6 +304,9 @@ export default function ProductCatalogPage() {
                     </div>
                 </div>
             </section>
+
+            {/* Premium Carpet Tile Collections Section */}
+            <TileCollectionsViewer />
 
             {/* Bottom decorative rule */}
             <div className="h-px w-full bg-gradient-to-r from-transparent via-[#c4aa96] to-transparent" />
